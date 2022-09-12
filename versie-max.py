@@ -1,10 +1,14 @@
 #eerst moet je de database in mysql maken in de command line
 
-#CREATE TABLE sessions (
-#    -> id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-#    -> data VARCHAR(100),
-#    -> cur_timestamp TIMESTAMP(6)
-#    -> );
+# CREATE DATABASE DoorSense;
+
+# daarna de table maken
+
+# CREATE TABLE sessions (
+# id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+# data VARCHAR(100),
+# cur_timestamp TIMESTAMP(6)
+# );
 
 
 
