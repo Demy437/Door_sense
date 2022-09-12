@@ -2,6 +2,10 @@
 
 # CREATE DATABASE DoorSense;
 
+# daarna in de database gaan
+
+# USE DoorSense;
+
 # daarna de table maken
 
 # CREATE TABLE sessions (
@@ -9,6 +13,10 @@
 # data VARCHAR(100),
 # cur_timestamp TIMESTAMP(6)
 # );
+
+# om de database te zien
+
+# SELECT * FROM sessions;
 
 
 
