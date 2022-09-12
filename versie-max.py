@@ -2,6 +2,14 @@
 
 # CREATE DATABASE DoorSense;
 
+# een gebruiker aanmaken
+
+# CREATE USER ‘local_user’@’localhost’ IDENTIFIED BY ‘password’;
+
+# nog die gebruiker even permissions geven
+
+# GRANT ALL PRIVILEGES ON *.* TO 'local_user'@'localhost' IDENTIFIED BY "password";
+
 # daarna in de database gaan
 
 # USE DoorSense;
