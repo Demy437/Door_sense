@@ -18,8 +18,6 @@
 
 # SELECT * FROM sessions;
 
-
-
 import MySQLdb as mariadb
 from sense_hat import SenseHat
 from time import sleep
@@ -41,18 +39,4 @@ while True:
     x = acceleration['x']
     y = acceleration['y']
     z = acceleration['z']
-    sense.show_letter("!", green)
 
-    x = abs(x)
-    y = abs(y)
-    z = abs(z)
-
-    if x > 1 or y > 1 or z > 0.9:
-        sense.clear()
-    else:
-        insert = "INSERT INTO sessions (data) VALUES ('OPEN');"
-        cursor.execute(insert)
-        sense.show_letter("✅", green)
-        mariadb_connection.commit()
-        mariadb_connection.close()
-        sleep(10)
