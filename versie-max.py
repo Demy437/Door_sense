@@ -26,6 +26,10 @@
 
 # SELECT * FROM sessions;
 
+#Voor de push notificaties moet je "Pushover" downloaden op je telefoon
+
+# ga naar https://pushover.net/apps , maak een account en een api key en voer die in in de code hieronder
+
 import MySQLdb as mariadb
 import requests
 from pushover import init, Client
@@ -41,7 +45,9 @@ mariadb_connection = mariadb.connect(
     host='localhost',
     database="DoorSense")
 
+#api key
 init("adc7v3cmvdqmqsg6vhts5ish49hs1k")
+#user key
 push = Client("ucfjjgz497699rta9td4gkwecoafgv")
 
 # create a cursor object for executing queries
