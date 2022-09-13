@@ -26,7 +26,26 @@
 
 # SELECT * FROM sessions;
 
-rsor = mariadb_connection.cursor()
+import MySQLdb as mariadb
+import requests
+from pushover import init, Client
+from sense_hat import SenseHat
+from time import sleep
+sense = SenseHat()
+
+
+# connect to the database
+mariadb_connection = mariadb.connect(
+    user='local_user',
+    password='password',
+    host='localhost',
+    database="DoorSense")
+
+init("adc7v3cmvdqmqsg6vhts5ish49hs1k")
+push = Client("ucfjjgz497699rta9td4gkwecoafgv")
+
+# create a cursor object for executing queries
+cursor = mariadb_connection.cursor()
 green = (0, 255, 0)
 
 while True:
@@ -48,4 +67,5 @@ while True:
         sense.show_letter("✅", green)
         push.send_message("‎", title="Deur is open!")
         mariadb_connection.commit()
+        #zorgt ervoor dat de melding maximaal 1x per 10 seconden gebeurt
         sleep(10)
