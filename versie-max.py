@@ -36,6 +36,7 @@ from pushover import init, Client
 from sense_hat import SenseHat
 from time import sleep
 sense = SenseHat()
+sense.low_light = True
 
 
 # connect to the database
@@ -54,6 +55,10 @@ push = Client("ucfjjgz497699rta9td4gkwecoafgv")
 cursor = mariadb_connection.cursor()
 green = (0, 255, 0)
 
+def countdown():
+    for i in range (5, -1, -1):
+        sense.show_letter( str(i), green)
+        sleep(1)
 while True:
     acceleration = sense.get_accelerometer_raw()
     x = acceleration['x']
@@ -70,8 +75,8 @@ while True:
         #voegt een timestamp toe aan de database
         insert = "INSERT INTO sessions (data) VALUES ('OPEN');"
         cursor.execute(insert)
-        sense.show_letter("✅", green)
         push.send_message("Deur is open!", title="⚠️ Alert")
         mariadb_connection.commit()
         #zorgt ervoor dat de melding maximaal 1x per 10 seconden gebeurt
-        sleep(10)
+        countdown()
+        #sleep(10)
