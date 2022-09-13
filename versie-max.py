@@ -26,20 +26,7 @@
 
 # SELECT * FROM sessions;
 
-import MySQLdb as mariadb
-from sense_hat import SenseHat
-from time import sleep
-sense = SenseHat()
-
-# connect to the database
-mariadb_connection = mariadb.connect(
-    user='local_user',
-    password='password',
-    host='localhost',
-    database="DoorSense")
-
-# create a cursor object for executing queries
-cursor = mariadb_connection.cursor()
+rsor = mariadb_connection.cursor()
 green = (0, 255, 0)
 
 while True:
@@ -47,7 +34,6 @@ while True:
     x = acceleration['x']
     y = acceleration['y']
     z = acceleration['z']
-    sense.show_letter("!", green)
 
     x = abs(x)
     y = abs(y)
@@ -56,9 +42,10 @@ while True:
     if x > 1 or y > 1 or z > 0.9:
         sense.clear()
     else:
+        #voegt een timestamp toe aan de database
         insert = "INSERT INTO sessions (data) VALUES ('OPEN');"
         cursor.execute(insert)
         sense.show_letter("✅", green)
+        push.send_message("‎", title="Deur is open!")
         mariadb_connection.commit()
-       # mariadb_connection.close()
         sleep(10)
