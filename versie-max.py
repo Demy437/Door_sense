@@ -71,7 +71,7 @@ while True:
         insert = "INSERT INTO sessions (data) VALUES ('OPEN');"
         cursor.execute(insert)
         sense.show_letter("✅", green)
-        push.send_message("‎", title="Deur is open!")
+        push.send_message("Deur is open!", title="⚠️ Alert")
         mariadb_connection.commit()
         #zorgt ervoor dat de melding maximaal 1x per 10 seconden gebeurt
         sleep(10)
