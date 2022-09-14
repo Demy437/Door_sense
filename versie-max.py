@@ -32,12 +32,15 @@
 
 import MySQLdb as mariadb
 import requests
+import pygame
 from pushover import init, Client
 from sense_hat import SenseHat
 from time import sleep
 sense = SenseHat()
 sense.low_light = True
 
+pygame.mixer.init()
+pygame.mixer.music.load("sound_2.wav")
 
 # connect to the database
 mariadb_connection = mariadb.connect(
@@ -77,6 +80,8 @@ while True:
         cursor.execute(insert)
         push.send_message("Deur is open!", title="⚠️ Alert")
         mariadb_connection.commit()
+        pygame.mixer.music.play()
         #zorgt ervoor dat de melding maximaal 1x per 10 seconden gebeurt
         countdown()
         #sleep(10)
+
